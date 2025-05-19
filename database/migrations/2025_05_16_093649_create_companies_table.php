@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('logo_filepath');
             $table->string('website');
+            $table->timestamps();
         });
     }
 
