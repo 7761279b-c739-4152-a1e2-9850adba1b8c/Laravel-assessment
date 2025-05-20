@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    // public function index()
-    // {
-
-    // }
+    public function index()
+    {
+        $companies = Company::latest()->simplePaginate(10);
+        return view('company.index', [
+            'companies' => $companies
+        ]);
+    }
 
     public function create()
     {
