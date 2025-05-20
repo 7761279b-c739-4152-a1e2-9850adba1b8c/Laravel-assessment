@@ -8,10 +8,10 @@
                 <div class="card-header">{{ __('Create a Company') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/company">
+                    <form method="POST" action="/company" enctype="multipart/form-data">
                         @csrf
 
-                        <x-form-input id="company-name" type="text">Company Name</x-form-input>
+                        <x-form-input id="company-name" type="text" required autofocus>Company Name</x-form-input>
 
                         <x-form-input id="email" type="email">Company Email</x-form-input>
 
@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form
+                    </form>
                 </div>
             </div>
         </div>
