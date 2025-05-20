@@ -10,6 +10,7 @@
 
                 <x-company-info :company=$company />
 
+                <a href="/company/{{ $company->id }}/edit" class="btn">Edit Company</a>
             </div>
         </div>
     </div>

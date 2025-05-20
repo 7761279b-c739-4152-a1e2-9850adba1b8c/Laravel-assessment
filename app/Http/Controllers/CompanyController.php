@@ -33,8 +33,8 @@ class CompanyController extends Controller
             'logo' => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
             'website' => ['nullable', 'url']
         ]);
-        if ($request['logo'] ?? false) {
-            $filepath = $request['logo']->store('logos');
+        if ($attributes['logo'] ?? false) {
+            $filepath = $attributes['logo']->store('logos');
         }
         Company::create([
             'name' => $attributes['company-name'],
@@ -51,13 +51,33 @@ class CompanyController extends Controller
         return view('company.edit', ['company' => $company]);
     }
 
-    public function update()
+    public function update(Request $request, string $id)
     {
+        $attributes = $request->validate([
+            'company-name' => ['required', 'unique:companies,name'],
+            'email' => ['nullable', 'email', 'unique:companies,name'],
+            'logo' => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
+            'website' => ['nullable', 'url']
+        ]);
+        $company = Company::findOrFail($id);
+
+        $company->name = $attributes['company-name'];
+        $company->email = $attributes['email'];
+        if ($attributes['logo'] ?? false) {
+            $filepath = $attributes['logo']->store('logos');
+            $company->logo_filepath = $filepath;
+        }
+        $company->website = $attributes['website'];
+        $company->save();
+
+        return redirect('/company/' . $company->id);
         
     }
 
-    public function destroy()
+    public function destroy(string $id)
     {
-        
+        Company::findOrFail($id)->delete();
+
+        return redirect('/company');
     }
 }
