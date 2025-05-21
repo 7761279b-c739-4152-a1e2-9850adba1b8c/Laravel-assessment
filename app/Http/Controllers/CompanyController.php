@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
     public function index()
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         $companies = Company::latest()->simplePaginate(10);
         return view('company.index', [
             'companies' => $companies
@@ -17,16 +20,22 @@ class CompanyController extends Controller
 
     public function create()
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         return view('company.create');
     }
 
     public function show(Company $company)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         return view('company.show', ['company' => $company]);
     }
 
     public function store(Request $request)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         $attributes = $request->validate([
             'company-name' => ['required', 'unique:companies,name'],
             'email' => ['nullable', 'email', 'unique:companies,name'],
@@ -48,11 +57,15 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         return view('company.edit', ['company' => $company]);
     }
 
     public function update(Request $request, string $id)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         $attributes = $request->validate([
             'company-name' => ['required', 'unique:companies,name'],
             'email' => ['nullable', 'email', 'unique:companies,name'],
@@ -76,6 +89,8 @@ class CompanyController extends Controller
 
     public function destroy(string $id)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         Company::findOrFail($id)->delete();
 
         return redirect('/company');

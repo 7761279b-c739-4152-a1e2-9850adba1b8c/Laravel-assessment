@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         $employees = Employee::latest()->simplePaginate(10);
         return view('employee.index', [
             'employees' => $employees
@@ -18,16 +21,22 @@ class EmployeeController extends Controller
 
     public function create()
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         return view('employee.create');
     }
 
     public function show(Employee $employee)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         return view('employee.show', ['employee' => $employee]);
     }
 
     public function store(Request $request)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         $attributes = $request->validate([
             'first-name' => ['required'],
             'last-name' => ['required'],
@@ -53,11 +62,15 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         return view('employee.edit', ['employee' => $employee]);
     }
 
     public function update(Request $request, string $id)
     {
+        if (Auth::guest()) {return redirect('/login');}
+
         $attributes = $request->validate([
             'first-name' => ['required'],
             'last-name' => ['required'],
@@ -82,6 +95,8 @@ class EmployeeController extends Controller
 
     public function destroy(string $id)
     {   
+        if (Auth::guest()) {return redirect('/login');}
+
         Employee::findOrFail($id)->delete();
 
         return redirect('/employee');
