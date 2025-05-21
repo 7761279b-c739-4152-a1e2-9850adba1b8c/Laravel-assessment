@@ -1,8 +1,25 @@
-@props(['company'])
+@props(['company', 'full'])
 
-<div class="row mb-3">
-    <h2><a href="/company/{{ $company['id'] }}">{{ $company['name'] }}</a></h2>
-    @if($company['logo_filepath'] ?? false)
-    <img src="/{{ $company['logo_filepath'] }}" style="height: 20px; width: auto; aspect-ratio: auto;" />
-    @endif
+<div style="border: 1px solid grey; display: block; padding: 4px;">
+    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-right: 20px;">
+        <h2>{{ $company->name }}</h2>
+        @if($company->logo_filepath ?? false)
+            <img src="/{{ $company->logo_filepath }}" style="height: 32px; width: auto; aspect-ratio: auto;" />
+        @endif
+    </div>
+    <div style="display: flex; flex-direction: row; gap: 5%;">
+        <p class="m-0">Contact: {{ $company->email ?? 'none'}}</p>
+        @if($company->website)
+            <a class="m-0" href="{{ $company->website }}">Website: {{ $company->website }}</p>
+        @else
+            <p class="m-0">Website: none</p>
+        @endif
+    </div>
+    <div style="display: flex; justify-content: right;">
+        @if($full)
+            <a href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
+        @else
+            <a href="/company/{{ $company->id }}" class="btn btn-primary">View Company</a>
+        @endif
+    </div>
 </div>

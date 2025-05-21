@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Companies') }}</div>
 
                 @foreach($companies as $company)
-                    <x-company-info :company=$company />
+                    <x-company-info :company=$company :full=false />
                 @endforeach()
 
             </div>

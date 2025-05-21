@@ -8,10 +8,11 @@
             <div class="card">
                 <div class="card-header">{{ __('Employees') }}</div>
 
-                @foreach($employees as $employee)
-                    <x-employee-info :employee=$employee />
-                @endforeach()
-
+                <div class="space-y-4">
+                    @foreach($employees as $employee)
+                        <x-employee-info :employee=$employee :full=false />
+                    @endforeach()
+                </div>
             </div>
         </div>
     </div>

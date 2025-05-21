@@ -24,7 +24,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <a href="/companies/{{ $company->id }}" class="btn">
+                                    <a href="/company/{{ $company->id }}" class="btn">
                                         {{ __('Cancel') }}
                                     </a>
                                     <button type="submit" class="btn btn-primary">

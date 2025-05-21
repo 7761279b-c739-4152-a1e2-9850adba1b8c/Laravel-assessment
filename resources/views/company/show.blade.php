@@ -5,12 +5,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div style="display: flex; justify-content: left; margin-bottom: 10px;">
+                <a href="/company" class="btn">Back to Companies</a>
+            </div>
             <div class="card">
                 <div class="card-header">{{ __('Company') }}</div>
 
-                <x-company-info :company=$company />
+                <x-company-info :company=$company :full=true />
 
-                <a href="/company/{{ $company->id }}/edit" class="btn">Edit Company</a>
             </div>
         </div>
     </div>
