@@ -16,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->foreignIdFor(Company::class);
-            $table->string('email');
-            $table->string('phone');
+            $table->foreignIdFor(Company::class)->nullable()->onUpdate('cascade')->onDelete('set null');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }

@@ -6,11 +6,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Employee') }}</div>
+                <div class="card-header">{{ __('Employees') }}</div>
 
-                <x-employee-info :employee=$employee />
+                @foreach($employees as $employee)
+                    <x-employee-info :employee=$employee />
+                @endforeach()
 
-                <a href="/employee/{{ $employee->id }}/edit" class="btn">Edit Employee</a>
             </div>
         </div>
     </div>
