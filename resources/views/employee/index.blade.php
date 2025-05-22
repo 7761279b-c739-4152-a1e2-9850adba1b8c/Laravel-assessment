@@ -14,6 +14,9 @@
                     @endforeach()
                 </div>
             </div>
+            <div style="display: flex; justify-content: right; margin-top: 20px;">
+                <a href="/employee/create" class="btn btn-primary">Create an employee</a>
+            </div>
         </div>
     </div>
 </div>

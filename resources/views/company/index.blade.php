@@ -13,6 +13,9 @@
                 @endforeach()
 
             </div>
+            <div style="display: flex; justify-content: right; margin-top: 20px;">
+                <a href="/company/create" class="btn btn-primary">Create a Company</a>
+            </div>
         </div>
     </div>
 </div>
