@@ -67,8 +67,8 @@ class CompanyController extends Controller
         if (Auth::guest()) {return redirect('/login');}
 
         $attributes = $request->validate([
-            'company-name' => ['required', 'unique:companies,name'],
-            'email' => ['nullable', 'email', 'unique:companies,name'],
+            'company-name' => ['required', 'unique:companies,name,'.$id],
+            'email' => ['nullable', 'email', 'unique:companies,name,'.$id],
             'logo' => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
             'website' => ['nullable', 'url']
         ]);
