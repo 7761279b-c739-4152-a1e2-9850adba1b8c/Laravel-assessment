@@ -11,7 +11,7 @@
         <div style="display: flex; flex-direction: row; gap: 5%; flex-basis:50%">
             <p class="m-0">Contact: {{ $company->email ?? 'none'}}</p>
             @if($company->website)
-                <p class="m-0">Website: <a class="m-0" href="{{ $company->website }}">{{ $company->website }}</a></p>
+                <p class="m-0">Website: <a class="m-0" href="{{ $company->website }}" target="_blank">{{ $company->website }}</a></p>
             @else
                 <p class="m-0">Website: none</p>
             @endif
