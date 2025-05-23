@@ -8,14 +8,16 @@
             <div class="card">
                 <div class="card-header">{{ __('Employees') }}</div>
 
-                <div class="space-y-4">
-                    @foreach($employees as $employee)
-                        <x-employee-info :employee=$employee :full=false />
-                    @endforeach()
+                <div class="card-body">
+                    <div class="space-y-4">
+                        @foreach($employees as $employee)
+                            <x-employee-info :employee=$employee :full=false />
+                        @endforeach()
+                    <div style="display: flex; justify-content: right; margin-top: 20px;">
+                        <a href="/employee/create" class="btn btn-primary">Create an employee</a>
+                    </div>
+                    </div>
                 </div>
-            </div>
-            <div style="display: flex; justify-content: right; margin-top: 20px;">
-                <a href="/employee/create" class="btn btn-primary">Create an employee</a>
             </div>
         </div>
     </div>

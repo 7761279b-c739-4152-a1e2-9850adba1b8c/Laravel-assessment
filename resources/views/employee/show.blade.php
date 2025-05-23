@@ -11,7 +11,9 @@
             <div class="card">
                 <div class="card-header">{{ __('Employee') }}</div>
 
-                <x-employee-info :employee=$employee :full=true />
+                <div class="card-body">
+                    <x-employee-info :employee=$employee :full=true />
+                </div>
 
             </div>
         </div>

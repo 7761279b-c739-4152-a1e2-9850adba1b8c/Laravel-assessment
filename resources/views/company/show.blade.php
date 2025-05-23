@@ -11,8 +11,9 @@
             <div class="card">
                 <div class="card-header">{{ __('Company') }}</div>
 
-                <x-company-info :company=$company :full=true />
-
+                <div class="card-body">
+                    <x-company-info :company=$company :full=true />
+                </div>
             </div>
         </div>
     </div>
