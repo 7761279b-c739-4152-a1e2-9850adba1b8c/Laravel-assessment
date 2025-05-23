@@ -15,7 +15,16 @@
 
                         <x-form-input id="last-name" type="text">Last Name</x-form-input>
 
-                        <x-form-input id="company" type="text">Company</x-form-input>
+                        <?php
+                            use App\Models\Company;
+                            $company_names = Company::latest()->pluck('name');
+                        ?>
+                        <x-form-select id="company" label="Company">
+                                <option value=""></option>
+                            @foreach ($company_names as $name)
+                                <option value="{{ $name }}">{{ $name }}</option>
+                            @endforeach
+                        </x-form-select>
 
                         <x-form-input id="email" type="text">Email</x-form-input>
 

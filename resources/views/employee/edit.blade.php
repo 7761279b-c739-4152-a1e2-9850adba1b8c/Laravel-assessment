@@ -18,7 +18,20 @@
 
                             <x-form-input id="last-name" type="text" value="{{ $employee->last_name }}">Last Name</x-form-input>
 
-                            <x-form-input id="company" type="text" value="{{ $employee->company ? $employee->company->name : '' }}">Company</x-form-input>
+                            <?php
+                                use App\Models\Company;
+                                $company_names = Company::latest()->pluck('name');
+                            ?>
+                            <x-form-select id="company" label="Company">
+                                        <option value=""></option>
+                                @foreach ($company_names as $name)
+                                    @if ($name == ($employee->company ? $employee->company->name : ''))
+                                        <option value="{{ $name }}" selected="selected">{{ $name }}</option>
+                                    @else
+                                        <option value="{{ $name }}">{{ $name }}</option>
+                                    @endif
+                                @endforeach
+                            </x-form-select>
 
                             <x-form-input id="email" type="text" value="{{ $employee->email ?? '' }}">Email</x-form-input>
 
