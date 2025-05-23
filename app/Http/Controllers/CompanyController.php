@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
@@ -36,11 +37,13 @@ class CompanyController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        $attributes = $request->validate([
+        $attributes = Validator::validate($request->all(), [
             'company-name' => ['required', 'unique:companies,name'],
             'email' => ['nullable', 'email', 'unique:companies,name'],
             'logo' => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
             'website' => ['nullable', 'url']
+        ], [
+            'logo.dimensions' => ['The logo field has invalid image dimensions (must be at least 100x100).']
         ]);
         if ($attributes['logo'] ?? false) {
             $filepath = $attributes['logo']->store('logos');
@@ -66,11 +69,13 @@ class CompanyController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        $attributes = $request->validate([
+        $attributes = Validator::validate($request->all(), [
             'company-name' => ['required', 'unique:companies,name,'.$id],
             'email' => ['nullable', 'email', 'unique:companies,name,'.$id],
             'logo' => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
             'website' => ['nullable', 'url']
+        ], [
+            'logo.dimensions' => ['The logo field has invalid image dimensions (must be at least 100x100).']
         ]);
         $company = Company::findOrFail($id);
 
