@@ -1,6 +1,6 @@
 @props(['company', 'full'])
 
-<div style="border: 1px solid grey; display: block; padding: 4px;">
+<div style="border: 1px solid grey; display: block; padding: 4px; overflow-x: hidden;">
     <div style="display: flex; flex-direction: row; justify-content: space-between; margin-right: 20px;">
         <h2>{{ $company->name }}</h2>
         @if($company->logo_filepath ?? false)
