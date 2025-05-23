@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" style="border-radius: 5px;<?= request()->is('home') ? ' background-color: #ddd;' : '' ?>" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -31,10 +31,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/company">{{ __('Companies') }}</a>
+                            <a class="nav-link" style="border-radius: 5px;<?= request()->is('company') ? ' background-color: #ddd;' : '' ?>" href="/company">{{ __('Companies') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/employee">{{ __('Employees') }}</a>
+                            <a class="nav-link" style="border-radius: 5px;<?= request()->is('employee') ? ' background-color: #ddd;' : '' ?>" href="/employee">{{ __('Employees') }}</a>
                         </li>
                     </ul>
 
@@ -44,13 +44,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" style="border-radius: 5px;<?= request()->is('login') ? ' background-color: #ddd;' : '' ?>" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" style="border-radius: 5px;<?= request()->is('register') ? ' background-color: #ddd;' : '' ?>" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
