@@ -14,7 +14,7 @@
                             @method('PATCH')
                             
 
-                            <x-form-input id="company-name" type="text" required autofocus value="{{ $company->name }}">Company Name</x-form-input>
+                            <x-form-input id="company-name" type="text" required autofocus value="{{ $company->name }}">Company Name*</x-form-input>
 
                             <x-form-input id="email" type="email" value="{{ $company->email ?? '' }}">Company Email</x-form-input>
 

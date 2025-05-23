@@ -11,9 +11,9 @@
                     <form method="POST" action="/employee" enctype="multipart/form-data">
                         @csrf
 
-                        <x-form-input id="first-name" type="text" required autofocus>First Name</x-form-input>
+                        <x-form-input id="first-name" type="text" required autofocus>First Name*</x-form-input>
 
-                        <x-form-input id="last-name" type="text">Last Name</x-form-input>
+                        <x-form-input id="last-name" type="text" required>Last Name*</x-form-input>
 
                         <?php
                             use App\Models\Company;

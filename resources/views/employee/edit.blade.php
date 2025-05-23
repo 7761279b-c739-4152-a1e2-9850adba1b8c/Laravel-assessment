@@ -14,9 +14,9 @@
                             @method('PATCH')
                             
 
-                            <x-form-input id="first-name" type="text" value="{{ $employee->first_name }}" required autofocus>First Name</x-form-input>
+                            <x-form-input id="first-name" type="text" value="{{ $employee->first_name }}" required autofocus>First Name*</x-form-input>
 
-                            <x-form-input id="last-name" type="text" value="{{ $employee->last_name }}">Last Name</x-form-input>
+                            <x-form-input id="last-name" type="text" value="{{ $employee->last_name }}" required>Last Name*</x-form-input>
 
                             <?php
                                 use App\Models\Company;

@@ -11,7 +11,7 @@
                     <form method="POST" action="/company" enctype="multipart/form-data">
                         @csrf
 
-                        <x-form-input id="company-name" type="text" required autofocus>Company Name</x-form-input>
+                        <x-form-input id="company-name" type="text" required autofocus>Company Name*</x-form-input>
 
                         <x-form-input id="email" type="email">Company Email</x-form-input>
 
