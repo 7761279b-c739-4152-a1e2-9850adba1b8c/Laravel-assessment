@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" style="border-radius: 5px;<?= request()->is('home') ? ' background-color: #ddd;' : '' ?>" href="{{ url('/') }}">
+                <a class="navbar-brand" style="border-radius: 5px; padding-left: .5rem; padding-right: .5rem;<?= request()->is('home') ? ' background-color: #ddd;' : '' ?>" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
