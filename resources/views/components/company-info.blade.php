@@ -17,9 +17,9 @@
             @endif
         </div>
         @if($full)
-            <a href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
+            <div><a href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
         @else
-            <a href="/company/{{ $company->id }}" class="btn btn-primary">View Company</a>
+            <div><a href="/company/{{ $company->id }}" class="btn btn-primary">View Company</a></div>
         @endif
     </div>
 </div>

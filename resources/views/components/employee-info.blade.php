@@ -12,9 +12,9 @@
             <p class="m-0">Contact:&nbsp; {{ $employee->email ? $employee->email . ($employee->phone ? ' - ' . $employee->phone : '') : $employee->phone ?? ''}}</p>
         </div>
         @if($full)
-            <a href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a>
+            <div><a href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a></div>
         @else
-            <a href="/employee/{{ $employee->id }}" class="btn btn-primary">View Employee</a>
+            <div><a href="/employee/{{ $employee->id }}" class="btn btn-primary">View Employee</a></div>
         @endif
     </div>
 </div>
