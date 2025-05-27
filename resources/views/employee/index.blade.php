@@ -19,6 +19,9 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-2">
+                {{ $employees->links() }}
+            </div>
         </div>
     </div>
 </div>
