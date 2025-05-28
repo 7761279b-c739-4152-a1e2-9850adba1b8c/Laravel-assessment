@@ -4,7 +4,7 @@
     <div style="display: flex; flex-direction: row; justify-content: space-between; margin-right: 20px;">
         <h2>{{ $company->name }}</h2>
         @if($company->logo_filepath ?? false)
-            <img src="/{{ $company->logo_filepath }}" style="height: 32px; width: auto; aspect-ratio: auto;" />
+            <img src="/storage/{{ $company->logo_filepath }}" style="height: 32px; width: auto; aspect-ratio: auto;" />
         @endif
     </div>
     <div style="display: flex; justify-content: space-between;">
