@@ -30,12 +30,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
                         <li class="nav-item">
                             <a class="nav-link" style="border-radius: 5px;<?= request()->is('company') ? ' background-color: #ddd;' : '' ?>" href="/company">{{ __('Companies') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="border-radius: 5px;<?= request()->is('employee') ? ' background-color: #ddd;' : '' ?>" href="/employee">{{ __('Employees') }}</a>
                         </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
