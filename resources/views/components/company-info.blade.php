@@ -1,4 +1,4 @@
-@props(['company', 'full'])
+@props(['company'])
 
 <div style="border: 1px solid grey; display: block; padding: 4px; overflow-x: hidden;">
     <div style="display: flex; flex-direction: row; justify-content: space-between; margin-right: 20px;">
@@ -16,10 +16,6 @@
                 <p class="m-0">Website: none</p>
             @endif
         </div>
-        @if($full)
-            <div><a href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
-        @else
-            <div><a href="/company/{{ $company->id }}" class="btn btn-primary">View Company</a></div>
-        @endif
+        <div><a href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
     </div>
 </div>

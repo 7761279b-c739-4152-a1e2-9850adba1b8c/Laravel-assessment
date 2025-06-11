@@ -11,7 +11,7 @@ $employees = Employee::latest()->simplePaginate(3);
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -27,31 +27,21 @@ $employees = Employee::latest()->simplePaginate(3);
             </div>
             <div class="m-4"></div>
             <div class="card">
-                <div class="card-header">{{ __('Latest employees') }}</div>
-
-                <div class="card-body">
-                    <div class="space-y-4">
-                        @foreach($employees as $employee)
-                            <x-employee-info :employee=$employee :full=false />
-                        @endforeach()
-                    </div>
-                    <div style="display: flex; justify-content: right; margin-top: 20px;">
-                        <a href="/employee" class="btn btn-secondary">All employees</a>
-                    </div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    {{ __('Latest employees') }}
+                    <a href="/employee" class="btn btn-secondary">All employees</a>
                 </div>
+
+                <x-employee-table :employees=$employees></x-employee-table>
             </div>
             <div class="m-4"></div>
             <div class="card">
-                <div class="card-header">{{ __('Latest companies') }}</div>
-
-                <div class="card-body">
-                    @foreach($companies as $company)
-                        <x-company-info :company=$company :full=false />
-                    @endforeach()
-                    <div style="display: flex; justify-content: right; margin-top: 20px;">
-                        <a href="/company" class="btn btn-secondary">All companies</a>
-                    </div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    {{ __('Latest companies') }}
+                    <a href="/company" class="btn btn-secondary">All companies</a>
                 </div>
+
+                <x-company-table :companies=$companies></x-company-table>
             </div>
         </div>
     </div>

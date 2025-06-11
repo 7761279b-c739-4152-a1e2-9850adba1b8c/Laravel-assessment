@@ -4,18 +4,14 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('Companies') }}</div>
-
-                <div class="card-body">
-                    @foreach($companies as $company)
-                        <x-company-info :company=$company :full=false />
-                    @endforeach()
-                    <div style="display: flex; justify-content: right; margin-top: 20px;">
-                        <a href="/company/create" class="btn btn-primary">Create a Company</a>
-                    </div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    {{ __('Companies') }}
+                    <a href="/company/create" class="btn btn-primary">Create a Company</a>
                 </div>
+
+                <x-company-table :companies=$companies></x-company-table>
             </div>
             <div class="mt-2">
                 {{ $companies->links() }}

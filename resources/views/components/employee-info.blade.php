@@ -1,4 +1,4 @@
-@props(['employee', 'full'])
+@props(['employee'])
 
 <div style="border: 1px solid grey; display: block; padding: 4px;">
     
@@ -11,10 +11,6 @@
             @endif
             <p class="m-0">Contact:&nbsp; {{ $employee->email ? $employee->email . ($employee->phone ? ' - ' . $employee->phone : '') : $employee->phone ?? ''}}</p>
         </div>
-        @if($full)
-            <div><a href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a></div>
-        @else
-            <div><a href="/employee/{{ $employee->id }}" class="btn btn-primary">View Employee</a></div>
-        @endif
+        <div><a href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a></div>
     </div>
 </div>

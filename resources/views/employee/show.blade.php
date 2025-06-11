@@ -12,7 +12,7 @@
                 <div class="card-header">{{ __('Employee') }}</div>
 
                 <div class="card-body">
-                    <x-employee-info :employee=$employee :full=true />
+                    <x-employee-info :employee=$employee />
                 </div>
 
             </div>
