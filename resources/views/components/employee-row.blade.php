@@ -5,7 +5,11 @@
         <h3 style="font-size: 1.25rem">{{ $employee->first_name }} {{ $employee->last_name }}</h3>
     </td>
     <td>
-        <p><a href="/company/{{ $employee->company->id }}">{{ $employee->company->name }}</a></p>
+        <p>
+            @if (isset($employee->company->id))
+                <a href="/company/{{ $employee->company->id }}">{{ $employee->company->name }}</a>
+            @endif
+        </p>
     </td>
     <td>
         <p>{{ $employee->email ?? '' }}<br>{{ $employee->phone ?? '' }}</p>
