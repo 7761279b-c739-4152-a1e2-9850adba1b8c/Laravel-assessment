@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->foreignIdFor(Company::class)->nullable()->onUpdate('cascade')->onDelete('set null');
+            $table->foreignIdFor(Company::class)->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->timestamps();

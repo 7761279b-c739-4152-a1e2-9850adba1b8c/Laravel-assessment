@@ -96,7 +96,13 @@ class CompanyController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        Company::findOrFail($id)->delete();
+        $company = Company::findOrFail($id);
+
+        if ($company->employees()->count() > 0) {
+            return redirect('/company/' . $id . '/edit')->with('error', 'Unable to delete company. Please remove all employees first.');
+        }
+
+        $company->delete();
 
         return redirect('/company');
     }

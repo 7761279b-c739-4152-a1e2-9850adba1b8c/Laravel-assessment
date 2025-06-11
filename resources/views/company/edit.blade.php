@@ -13,6 +13,11 @@
                             @csrf
                             @method('PATCH')
                             
+                            @if (session('error'))
+                                <div class="mb-3">
+                                    <p class="invalid-feedback" style="display: inline"><strong>{{ session('error') }}</strong></p>
+                                </div>
+                            @endif
 
                             <x-form-input id="company-name" type="text" required autofocus value="{{ $company->name }}">Company Name*</x-form-input>
 
