@@ -45,6 +45,13 @@
                             @csrf
                             @method('DELETE')
                         </form>
+                        <script>
+                            document.getElementById('delete-form').addEventListener('submit', event => {
+                                if (!confirm('Are you sure you want to delete this company?')) {
+                                    event.preventDefault();
+                                }
+                            })
+                        </script>
                     </div>
                 </div>
             </div>
