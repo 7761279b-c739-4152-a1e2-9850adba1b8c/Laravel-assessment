@@ -1,16 +1,16 @@
 @props(['employee'])
 
-<div style="border: 1px solid grey; display: block; padding: 4px;">
-    
-    <h2 class="font-bold text-lg m-0">{{ $employee->first_name }} {{ $employee->last_name }}</h2>
+<div class="card-body">
+    <h3 class="card-title">{{ $employee->first_name }} {{ $employee->last_name }}</h3>
 
-    <div style="display: flex; justify-content: space-between;">
-        <div style="display: flex; flex-direction: row; gap: 5%; flex-basis:50%">
-            @if ($employee->company)
-                <p class="m-0">Company: <a href="/company/{{ $employee->company->id }}">{{ $employee->company->name }}</a></p>
-            @endif
-            <p class="m-0">Contact:&nbsp; {{ $employee->email ? $employee->email . ($employee->phone ? ' - ' . $employee->phone : '') : $employee->phone ?? ''}}</p>
-        </div>
-        <div><a href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a></div>
-    </div>
+    @if ($employee->company ?? false)
+        <p class="card-text">Company: <a href="/company/{{ $employee->company->id }}">{{ $employee->company->name }}</a></p>
+    @endif
+    @if ($employee->email ?? false)
+        <p class="card-text">Email: {{ $employee->email }}</p>
+    @endif
+    @if ($employee->phone ?? false)
+        <p class="card-text">Phone: {{ $employee->phone }}</p>
+    @endif
+    <div><a class="card-link" href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a></div>
 </div>
