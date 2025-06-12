@@ -6,8 +6,8 @@
             <tr>
                 <th><!-- Logo --></th>
                 <th>Name</th>
-                <th>Website</th>
                 <th>Contact</th>
+                <th>Website</th>
                 <th class="text-end"></th>
             </tr>
         </thead>

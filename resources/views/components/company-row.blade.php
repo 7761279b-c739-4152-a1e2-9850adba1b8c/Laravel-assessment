@@ -7,7 +7,7 @@
         @endif
     </td>
     <td>
-        <h3>{{ $company->name }}</h3>
+        <h3 style="font-size: 1.25rem">{{ $company->name }}</h3>
     </td>
     <td>
         <p> {{ $company->email ?? 'none'}}</p>
