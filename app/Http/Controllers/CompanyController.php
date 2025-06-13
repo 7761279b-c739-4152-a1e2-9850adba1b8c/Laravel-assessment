@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,8 @@ class CompanyController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        return view('company.show', ['company' => $company]);
+        $employees = Employee::where('company_id', $company->id)->latest()->paginate(6);
+        return view('company.show', ['company' => $company, 'employees' => $employees]);
     }
 
     public function store(Request $request)
