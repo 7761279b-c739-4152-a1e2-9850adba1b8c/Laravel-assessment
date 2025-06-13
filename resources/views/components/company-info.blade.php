@@ -13,5 +13,5 @@
     @else
         <p class="card-text">Website: none</p>
     @endif
-    <a class="card-link" href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
+    <a class="btn btn-primary" href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
 </div>

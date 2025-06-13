@@ -13,9 +13,8 @@
 
                 <x-employee-table :employees=$employees></x-employee-table>
             </div>
-            <div class="mt-2">
-                {{ $employees->links() }}
-            </div>
+            <div class="mt-2"></div>
+            {{ $employees->links() }}
         </div>
     </div>
 </div>

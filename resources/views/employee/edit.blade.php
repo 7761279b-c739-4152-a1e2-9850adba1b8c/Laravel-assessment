@@ -39,7 +39,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <a href="/employee/{{ $employee->id }}" class="btn">
+                                    <a href="/employee/{{ $employee->id }}" class="btn btn-secondary">
                                         {{ __('Cancel') }}
                                     </a>
                                     <button type="submit" class="btn btn-primary">

@@ -13,9 +13,8 @@
 
                 <x-company-table :companies=$companies></x-company-table>
             </div>
-            <div class="mt-2">
-                {{ $companies->links() }}
-            </div>
+            <div class="mt-2"></div>
+            {{ $companies->links() }}
         </div>
     </div>
 </div>

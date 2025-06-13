@@ -24,6 +24,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Create') }}
                                 </button>
+                                <a href="/company" class="btn btn-secondary">
+                                    {{ __('Cancel') }}
+                                </a>
                             </div>
                         </div>
                     </form>
