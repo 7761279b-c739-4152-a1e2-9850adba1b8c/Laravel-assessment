@@ -13,7 +13,7 @@ class CompanyController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        $companies = Company::latest()->simplePaginate(10);
+        $companies = Company::latest()->paginate(10);
         return view('company.index', [
             'companies' => $companies
         ]);

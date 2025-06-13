@@ -13,7 +13,7 @@ class EmployeeController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        $employees = Employee::latest()->simplePaginate(10);
+        $employees = Employee::latest()->paginate(10);
         return view('employee.index', [
             'employees' => $employees
         ]);
