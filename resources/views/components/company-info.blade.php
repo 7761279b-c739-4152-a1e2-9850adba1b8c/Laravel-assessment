@@ -1,9 +1,11 @@
 @props(['company'])
 
-@if($company->logo_filepath ?? false)
-    <img src="/storage/{{ $company->logo_filepath }}" style="aspect-ratio: auto;" />
-@endif
 <div class="card-body">
+    @if($company->logo_filepath ?? false)
+        <div>
+            <img src="/storage/{{ $company->logo_filepath }}" style="height: 64px; width: auto; aspect-ratio: auto;" />
+        </div>
+    @endif
     <h3 class="card-title">{{ $company->name }}</h3>
     @if ($company->email ?? false)
         <p class="card-text">Email: {{ $company->email }}</p>
