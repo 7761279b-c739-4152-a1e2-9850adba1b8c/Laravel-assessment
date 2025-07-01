@@ -12,7 +12,7 @@
         </p>
     </td>
     <td>
-        <p>{{ $employee->email ?? '' }}<br>{{ $employee->phone ?? '' }}</p>
+        <p>{!! $employee->email ? str_replace(".", "<wbr>.", str_replace("@", "<wbr>@", htmlspecialchars($employee->email))) : 'none' !!}<br>{{ $employee->phone ?? '' }}</p>
     </td>
     <td style="text-align: right">
         <div><a href="/employee/{{ $employee->id }}" class="btn btn-primary">View Employee</a></div>
