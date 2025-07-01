@@ -19,11 +19,13 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        return view('employee.create');
+        $company_names = Company::latest()->pluck('name');
+        $selected_company = $request->query('company') ? Company::findOrFail($request->query('company'))->name : '';
+        return view('employee.create', ['company_names' => $company_names, 'selected_company' => $selected_company]);
     }
 
     public function show(Employee $employee)

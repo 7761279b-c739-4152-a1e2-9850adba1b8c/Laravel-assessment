@@ -15,14 +15,10 @@
 
                         <x-form-input id="last-name" type="text" required>Last Name*</x-form-input>
 
-                        <?php
-                            use App\Models\Company;
-                            $company_names = Company::latest()->pluck('name');
-                        ?>
                         <x-form-select id="company" label="Company">
                                 <option value=""></option>
                             @foreach ($company_names as $name)
-                                <option value="{{ $name }}">{{ $name }}</option>
+                                <option value="{{ $name }}"{{ $name == $selected_company ? ' selected="selected"' : '' }}>{{ $name }}</option>
                             @endforeach
                         </x-form-select>
 

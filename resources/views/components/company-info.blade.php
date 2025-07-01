@@ -16,4 +16,5 @@
         <p class="card-text">Website: none</p>
     @endif
     <a class="btn btn-primary" href="/company/{{ $company->id }}/edit" class="btn btn-primary">Edit Company</a>
+    <a class="btn btn-primary" href="/employee/create?company={{ $company->id }}" class="btn btn-primary">Add Employee</a>
 </div>
