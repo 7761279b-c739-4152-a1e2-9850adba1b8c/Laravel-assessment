@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand <?= request()->is('home') ? ' btn-tertiary' : '' ?>" style="border-radius: 5px; padding-left: .5rem; padding-right: .5rem;" href="{{ url('/') }}">
+                <a class="navbar-brand <?= request()->is('home') ? ' btn-tertiary' : '' ?>" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -32,10 +32,10 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link<?= request()->is('company') ? ' btn-tertiary' : '' ?>" style="border-radius: 5px;" href="/company">{{ __('Companies') }}</a>
+                            <a class="nav-link<?= request()->is('company') ? ' btn-tertiary' : '' ?>" href="/company">{{ __('Companies') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link<?= request()->is('employee') ? ' btn-tertiary' : '' ?>" style="border-radius: 5px;" href="/employee">{{ __('Employees') }}</a>
+                            <a class="nav-link<?= request()->is('employee') ? ' btn-tertiary' : '' ?>" href="/employee">{{ __('Employees') }}</a>
                         </li>
                         @endauth
                     </ul>
@@ -46,13 +46,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link<?= request()->is('login') ? ' btn-tertiary' : '' ?>" style="border-radius: 5px;" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link<?= request()->is('login') ? ' btn-tertiary' : '' ?>" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link<?= request()->is('register') ? ' btn-tertiary' : '' ?>" style="border-radius: 5px;" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link<?= request()->is('register') ? ' btn-tertiary' : '' ?>" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else

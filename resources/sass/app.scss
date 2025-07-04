@@ -35,3 +35,9 @@ $light: #fff6e9;
         border-color: #40A2E3;
     }
 }
+
+.nav-link, .navbar-brand {
+    border-radius: 5px;
+    padding-right: var(--bs-navbar-nav-link-padding-x);
+    padding-left: var(--bs-navbar-nav-link-padding-x);
+}
