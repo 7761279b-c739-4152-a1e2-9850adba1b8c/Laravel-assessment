@@ -42,7 +42,7 @@ class EmployeeController extends Controller
         $attributes = $request->validate([
             'first-name' => ['required'],
             'last-name' => ['required'],
-            'company' => ['nullable', 'exists:companies,name'],
+            'company' => ['exists:companies,name'],
             'email' => ['nullable'],
             'phone' => ['nullable']
         ]);
