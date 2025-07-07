@@ -47,9 +47,7 @@ class EmployeeController extends Controller
             'phone' => ['nullable']
         ]);
 
-        if ($attributes['company'] ?? false) {
-            $company = Company::where('name', $attributes['company'])->firstOrFail();
-        }
+        $company = Company::where('name', $attributes['company'])->firstOrFail();
 
         Employee::create([
             'first_name' => $attributes['first-name'],
@@ -76,7 +74,7 @@ class EmployeeController extends Controller
         $attributes = $request->validate([
             'first-name' => ['required'],
             'last-name' => ['required'],
-            'company_id' => ['nullable', 'exists:companies,name'],
+            'company' => ['exists:companies,name'],
             'email' => ['nullable'],
             'phone' => ['nullable']
         ]);
@@ -84,10 +82,8 @@ class EmployeeController extends Controller
 
         $employee->first_name = $attributes['first-name'];
         $employee->last_name = $attributes['last-name'];
-        if ($attributes['company'] ?? false) {
-            $company = Company::where('name', $attributes['company'])->firstOrFail();
-            $employee->company_id = $company['id'];
-        }
+        $company = Company::where('name', $attributes['company'])->firstOrFail();
+        $employee->company_id = $company['id'];
         $employee->email = $attributes['email'] ?? null;
         $employee->phone = $attributes['phone'] ?? null;
         $employee->save();
