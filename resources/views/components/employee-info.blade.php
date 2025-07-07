@@ -12,5 +12,19 @@
     @if ($employee->phone ?? false)
         <p class="card-text">Phone: {{ $employee->phone }}</p>
     @endif
-    <div><a class="btn btn-primary" href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a></div>
+    <div>
+        <a class="btn btn-primary" href="/employee/{{ $employee->id }}/edit" class="btn btn-primary">Edit Employee</a>
+        <button type="submit" class="btn btn-danger" form="delete-form">{{ __('Delete Employee') }}</button>
+    </div>
 </div>
+<form method="POST" action="/employee/{{ $employee->id }}" id="delete-form">
+    @csrf
+    @method('DELETE')
+</form>
+<script>
+    document.getElementById('delete-form').addEventListener('submit', event => {
+        if (!confirm('Are you sure you want to delete this employee?')) {
+            event.preventDefault();
+        }
+    })
+</script>
