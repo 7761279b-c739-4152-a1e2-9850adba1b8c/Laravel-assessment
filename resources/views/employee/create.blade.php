@@ -16,7 +16,7 @@
                         <x-form-input id="last-name" type="text" required>Last Name*</x-form-input>
 
                         <x-form-select id="company" label="Company">
-                                <option value=""></option>
+                            <option value="">Please select...</option>
                             @foreach ($company_names as $name)
                                 <option value="{{ $name }}"{{ $name == $selected_company ? ' selected="selected"' : '' }}>{{ $name }}</option>
                             @endforeach
