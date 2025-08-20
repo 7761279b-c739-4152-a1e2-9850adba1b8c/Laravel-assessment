@@ -18,12 +18,10 @@
 
                             <x-form-input id="last-name" type="text" value="{{ $employee->last_name }}" required>Last Name*</x-form-input>
 
-                            <?php
-                                use App\Models\Company;
-                                $company_names = Company::latest()->pluck('name');
-                            ?>
                             <x-form-select id="company" label="Company">
-                                        <option value=""></option>
+                                @if (!$company_names->contains($employee->company->name))
+                                    <option value="" selected="selected">Please select...</option>
+                                @endif
                                 @foreach ($company_names as $name)
                                     @if ($name == ($employee->company ? $employee->company->name : ''))
                                         <option value="{{ $name }}" selected="selected">{{ $name }}</option>

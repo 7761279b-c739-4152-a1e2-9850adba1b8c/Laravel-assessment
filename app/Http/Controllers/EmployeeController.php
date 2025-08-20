@@ -22,8 +22,7 @@ class EmployeeController extends Controller
     public function create(Request $request)
     {
         if (Auth::guest()) {return redirect('/login');}
-
-        $company_names = Company::latest()->pluck('name');
+        $company_names = Company::get()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->pluck('name');
         $selected_company = $request->query('company') ? Company::findOrFail($request->query('company'))->name : '';
         return view('employee.create', ['company_names' => $company_names, 'selected_company' => $selected_company]);
     }
@@ -64,7 +63,8 @@ class EmployeeController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        return view('employee.edit', ['employee' => $employee]);
+        $company_names = Company::get()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->pluck('name');
+        return view('employee.edit', ['employee' => $employee, 'company_names' => $company_names]);
     }
 
     public function update(Request $request, string $id)
