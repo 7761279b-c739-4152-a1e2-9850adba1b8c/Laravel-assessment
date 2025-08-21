@@ -2,7 +2,7 @@
 
 <tr class="align-middle">
     <td>
-        <h3 style="font-size: 1.25rem">{{ $employee->first_name }} {{ $employee->last_name }}</h3>
+        <p>{{ $employee->first_name }} {{ $employee->last_name }}</p>
     </td>
     <td>
         <p>

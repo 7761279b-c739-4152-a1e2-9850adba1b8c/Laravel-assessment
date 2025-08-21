@@ -7,7 +7,7 @@
         @endif
     </td>
     <td>
-        <h3 style="font-size: 1.25rem">{{ $company->name }}</h3>
+        <p>{{ $company->name }}</p>
     </td>
     <td>
         <p> {!! $company->email ? str_replace(".", "<wbr>.", str_replace("@", "<wbr>@", htmlspecialchars($company->email))) : 'none' !!}</p>
