@@ -23,15 +23,16 @@ class EmployeeController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
         $company_names = Company::get()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->pluck('name');
-        $selected_company = $request->query('company') ? Company::findOrFail($request->query('company'))->name : '';
+        $selected_company = $request->query('company') ? Company::findOrFail($request->query('company')) : null;
         return view('employee.create', ['company_names' => $company_names, 'selected_company' => $selected_company]);
     }
 
-    public function show(Employee $employee)
+    public function show(Request $request, Employee $employee)
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        return view('employee.show', ['employee' => $employee]);
+        $selected_company = $request->query('company') ? Company::findOrFail($request->query('company')) : null;
+        return view('employee.show', ['employee' => $employee, 'selected_company' => $selected_company]);
     }
 
     public function store(Request $request)
@@ -43,7 +44,8 @@ class EmployeeController extends Controller
             'last-name' => ['required'],
             'company' => ['exists:companies,name'],
             'email' => ['nullable'],
-            'phone' => ['nullable']
+            'phone' => ['nullable'],
+            'return' => ['nullable']
         ]);
 
         $company = Company::where('name', $attributes['company'])->firstOrFail();
@@ -56,15 +58,20 @@ class EmployeeController extends Controller
             'phone' => $attributes['phone'] ?? null
         ]);
 
+        if ($attributes['return'] ?? '' != '') {
+
+            return redirect('/company/' . $attributes['return']);
+        }
         return redirect('/employee');
     }
 
-    public function edit(Employee $employee)
+    public function edit(Request $request, Employee $employee)
     {
         if (Auth::guest()) {return redirect('/login');}
 
         $company_names = Company::get()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->pluck('name');
-        return view('employee.edit', ['employee' => $employee, 'company_names' => $company_names]);
+        $return = $request->query('company') ?? '';
+        return view('employee.edit', ['employee' => $employee, 'company_names' => $company_names, 'return' => $return]);
     }
 
     public function update(Request $request, string $id)
@@ -76,7 +83,8 @@ class EmployeeController extends Controller
             'last-name' => ['required'],
             'company' => ['exists:companies,name'],
             'email' => ['nullable'],
-            'phone' => ['nullable']
+            'phone' => ['nullable'],
+            'return' => ['nullable']
         ]);
         $employee = Employee::findOrFail($id);
 
@@ -88,15 +96,25 @@ class EmployeeController extends Controller
         $employee->phone = $attributes['phone'] ?? null;
         $employee->save();
 
+        if ($attributes['return'] ?? '' != '') {
+
+            return redirect('/employee/' . $employee->id .'?company=' . $attributes['return']);
+        }
         return redirect('/employee/' . $employee->id);
     }
 
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {   
         if (Auth::guest()) {return redirect('/login');}
 
         Employee::findOrFail($id)->delete();
 
-        return redirect('/employee');
+
+        $return = $request->query('company') ?? '';
+        if ($return == '') {
+            return redirect('/employee');
+        } else {
+            return redirect('/company/' . $return);
+        }
     }
 }

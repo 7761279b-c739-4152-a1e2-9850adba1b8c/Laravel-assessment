@@ -18,7 +18,8 @@
                         <x-form-select id="company" label="Company">
                             <option value="">Please select...</option>
                             @foreach ($company_names as $name)
-                                <option value="{{ $name }}"{{ $name == $selected_company ? ' selected="selected"' : '' }}>{{ $name }}</option>
+                                {{ $name }}
+                                <option value="{{ $name }}"{{ (!is_null($selected_company) && $name == $selected_company->name) ? ' selected="selected"' : '' }}>{{ $name }}</option>
                             @endforeach
                         </x-form-select>
 
@@ -26,14 +27,26 @@
 
                         <x-form-input id="phone" type="text">Phone</x-form-input>
 
+                        @if ($selected_company)
+                            <input name="return" type="hidden" value="{{ $selected_company->id }}" />
+                        @else
+                            <input name="return" type="hidden" value="" />
+                        @endif
+
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Create') }}
                                 </button>
-                                <a href="/employee" class="btn btn-secondary">
-                                    {{ __('Cancel') }}
-                                </a>
+                                @if (is_null($selected_company))
+                                    <a href="/employee" class="btn btn-secondary">
+                                        {{ __('Cancel') }}
+                                    </a>
+                                @else
+                                    <a href="/company/{{ $selected_company->id }}" class="btn btn-secondary">
+                                        {{ __('Cancel') }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </form>

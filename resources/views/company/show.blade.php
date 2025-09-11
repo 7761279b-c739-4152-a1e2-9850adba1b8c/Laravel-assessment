@@ -23,7 +23,7 @@
                 @if ($employees->isEmpty())
                     <p class="p-2 mb-0">This company has no employees</p>
                 @else
-                    <x-employee-table :employees=$employees></x-employee-table>
+                    <x-employee-table :employees=$employees :return="$company->id"></x-employee-table>
                     {{ $employees->links() }}
                 @endif
             </div>

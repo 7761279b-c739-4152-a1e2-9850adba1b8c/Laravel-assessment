@@ -1,4 +1,4 @@
-@props(['employee'])
+@props(['employee', 'return' => ''])
 
 <tr class="align-middle">
     <td>
@@ -15,6 +15,10 @@
         <p>{!! $employee->email ? str_replace(".", "<wbr>.", str_replace("@", "<wbr>@", htmlspecialchars($employee->email))) : 'none' !!}<br>{{ $employee->phone ?? '' }}</p>
     </td>
     <td style="text-align: right">
-        <div><a href="/employee/{{ $employee->id }}" class="btn btn-primary">View Employee</a></div>
+        @if ($return == '')
+            <div><a href="/employee/{{ $employee->id }}" class="btn btn-primary">View Employee</a></div>
+        @else
+            <div><a href="/employee/{{ $employee->id }}?company={{ $return }}" class="btn btn-primary">View Employee</a></div>
+        @endif
     </td>
 </tr>

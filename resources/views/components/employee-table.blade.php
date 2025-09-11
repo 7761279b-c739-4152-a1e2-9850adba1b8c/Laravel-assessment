@@ -1,4 +1,4 @@
-@props(['employees'])
+@props(['employees', 'return' => ''])
 
 <div class="table-responsive">
     <table class="table mb-0">
@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             @foreach($employees as $employee)
-                <x-employee-row :employee=$employee />
+                <x-employee-row :employee=$employee :return=$return />
             @endforeach()
         </tbody>
     </table>

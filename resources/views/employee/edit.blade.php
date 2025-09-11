@@ -35,9 +35,19 @@
 
                             <x-form-input id="phone" type="text" value="{{ $employee->phone ?? '' }}">Phone</x-form-input>
 
+                            @if ($return != '')
+                                <input name="return" type="hidden" value="{{ $return }}" />
+                            @else
+                                <input name="return" type="hidden" value="" />
+                            @endif
+
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <a href="/employee/{{ $employee->id }}" class="btn btn-secondary">
+                                    @if ($return == '')
+                                        <a href="/employee/{{ $employee->id }}" class="btn btn-secondary">
+                                    @else
+                                        <a href="/employee/{{ $employee->id }}?company={{ $return }}" class="btn btn-secondary">
+                                    @endif
                                         {{ __('Cancel') }}
                                     </a>
                                     <button type="submit" class="btn btn-primary">
@@ -49,7 +59,11 @@
                                 </div>
                             </div>
                         </form>
-                        <form method="POST" action="/employee/{{ $employee->id }}" id="delete-form">
+                        @if ($return == '')
+                            <form method="POST" action="/employee/{{ $employee->id }}" id="delete-form">
+                        @else
+                            <form method="POST" action="/employee/{{ $employee->id }}?company={{ $return }}" id="delete-form">
+                        @endif
                             @csrf
                             @method('DELETE')
                         </form>
