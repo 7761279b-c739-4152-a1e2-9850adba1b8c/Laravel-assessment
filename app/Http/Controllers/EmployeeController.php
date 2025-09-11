@@ -9,13 +9,30 @@ use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        $employees = Employee::latest()->paginate(10);
+        $order = $request->query('order') ?? 'nameasc';
+        $sortname = 'last_name'; $sortdir = 'asc';
+        if ($order == 'nameasc') {
+            $sortname = 'last_name';
+            $sortdir = 'asc';
+        } else if ($order == 'namedesc') {
+            $sortname = 'last_name';
+            $sortdir = 'desc';
+        } else if ($order == 'timeasc') {
+            $sortname = 'created_at';
+            $sortdir = 'asc';
+        } else if ($order == 'timedesc') {
+            $sortname = 'created_at';
+            $sortdir = 'desc';
+        }
+
+        $employees = Employee::orderBy($sortname, $sortdir)->orderBy('last_name', 'asc')->paginate(10);
         return view('employee.index', [
-            'employees' => $employees
+            'employees' => $employees,
+            'order' => $order
         ]);
     }
 

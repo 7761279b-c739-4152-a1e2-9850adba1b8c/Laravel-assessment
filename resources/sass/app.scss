@@ -41,3 +41,12 @@ $light: #fff6e9;
     padding-right: var(--bs-navbar-nav-link-padding-x);
     padding-left: var(--bs-navbar-nav-link-padding-x);
 }
+
+select {
+    background-color: var(--bs-table-bg);
+    border-color: #bbb;
+    border-radius: 2px;
+    &:focus-visible {
+        outline-color: $secondary;
+    }
+}

@@ -10,13 +10,30 @@ use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        $companies = Company::latest()->paginate(10);
+        $order = $request->query('order') ?? 'nameasc';
+        $sortname = 'name'; $sortdir = 'asc';
+        if ($order == 'nameasc') {
+            $sortname = 'name';
+            $sortdir = 'asc';
+        } else if ($order == 'namedesc') {
+            $sortname = 'name';
+            $sortdir = 'desc';
+        } else if ($order == 'timeasc') {
+            $sortname = 'created_at';
+            $sortdir = 'asc';
+        } else if ($order == 'timedesc') {
+            $sortname = 'created_at';
+            $sortdir = 'desc';
+        }
+
+        $companies = Company::orderBy($sortname, $sortdir)->orderBy('name', 'asc')->paginate(10);
         return view('company.index', [
-            'companies' => $companies
+            'companies' => $companies,
+            'order' => $order
         ]);
     }
 
@@ -31,7 +48,7 @@ class CompanyController extends Controller
     {
         if (Auth::guest()) {return redirect('/login');}
 
-        $employees = Employee::where('company_id', $company->id)->latest()->paginate(6);
+        $employees = Employee::where('company_id', $company->id)->orderBy('created_date', 'desc')->paginate(6);
         return view('company.show', ['company' => $company, 'employees' => $employees]);
     }
 
