@@ -26,7 +26,8 @@ class EmployeeFactory extends Factory
             'last_name' => $lastname,
             'company_id' => $company->id,
             'email' => strtolower($firstname . '.' . $lastname) . '@' . explode('@', $company->email)[1],
-            'phone' => null
+            'phone' => null,
+            'created_at' => fake()->dateTimeBetween('-1 year', now())
         ];
     }
 }

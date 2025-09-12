@@ -26,7 +26,8 @@ class CompanyFactory extends Factory
             'name' => $name,
             'email' => 'contact@' . $name_an . '.example',
             'logo_filepath' => null,
-            'website' => 'https://' . $name_an . '.example'
+            'website' => 'https://' . $name_an . '.example',
+            'created_at' => fake()->dateTimeBetween('-1 year', now())
         ];
     }
 }
